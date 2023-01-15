@@ -4,9 +4,6 @@
 # Pycharm
 .idea/
 
-# VS Code
-.vscode/
-
 # Snakemake
 .snakemake/
 
@@ -18,4 +15,4 @@ env
 
 .dvc/
 
-data
+data/
