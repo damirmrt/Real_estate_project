@@ -35,25 +35,25 @@ stages:
       md5: ce43fe511dd122670f536b2ef3d26136
       size: 32927996
     - path: src/data/clean_data.py
-      md5: 006d70387010dbdf1c31d043d18421ef
-      size: 1760
+      md5: f7d64d2312b54d4d7068e6fe60b43c6d
+      size: 1758
     outs:
     - path: data/interim/data_cleaned.csv
-      md5: 21fbc2b09585f36054af2042322794ad
-      size: 28625253
+      md5: 2ce0d77bd4513d6caf1a99ee454f62a7
+      size: 28625276
   add_features:
     cmd: python src/features/add_features.py data/interim/data_cleaned.csv data/interim/data_featured.csv
     deps:
     - path: data/interim/data_cleaned.csv
-      md5: 21fbc2b09585f36054af2042322794ad
-      size: 28625253
+      md5: 2ce0d77bd4513d6caf1a99ee454f62a7
+      size: 28625276
     - path: src/features/add_features.py
       md5: db51bf3074135298ab337f7711da7891
       size: 950
     outs:
     - path: data/interim/data_featured.csv
-      md5: dd7c81ad9953d567e2dc8c3200909bef
-      size: 35930251
+      md5: c5ccc14a8760fa8039b5bee9d5aaf7a9
+      size: 35930273
   get_osm_cafes_data:
     cmd: python src/data/get_osm_cafes_data.py "https://maps.mail.ru/osm/tools/overpass/api/interpreter?data=[out:json];nwr['addr:street'='Лиговский
       проспект']['addr:housenumber'=101];node[amenity=cafe](around:25000);out geom;"
@@ -74,59 +74,59 @@ stages:
       md5: 404d95d65a5a1530e91983653bf93862
       size: 1235291
     - path: data/interim/data_featured.csv
-      md5: dd7c81ad9953d567e2dc8c3200909bef
-      size: 35930251
+      md5: c5ccc14a8760fa8039b5bee9d5aaf7a9
+      size: 35930273
     - path: src/features/add_cafe_radius_features.py
       md5: 75777111f48c1d74d41d033ad9378167
       size: 1927
     outs:
     - path: data/processed/dataset.csv
-      md5: 5e44baba17cfc8d0aefcfbfe37c27ccd
-      size: 53966724
+      md5: c11c485d4536ddba2bfe41d8c7b1a0d9
+      size: 53966746
   prepare_datasets:
     cmd: python src/models/prepare_datasets.py data/processed/dataset.csv data/processed/train.csv
       data/processed/test.csv
     deps:
     - path: data/processed/dataset.csv
-      md5: 5e44baba17cfc8d0aefcfbfe37c27ccd
-      size: 53966724
+      md5: c11c485d4536ddba2bfe41d8c7b1a0d9
+      size: 53966746
     - path: src/models/prepare_datasets.py
       md5: 4b1b8ffd978ea2e2cf54cdcc34c8eef0
       size: 888
     outs:
     - path: data/processed/test.csv
-      md5: 3a0cfa4e35a13bab6051815ee8f58983
-      size: 6821730
+      md5: d5d058049adadf5625d00c8d970a854a
+      size: 6821741
     - path: data/processed/train.csv
-      md5: 8eb7a1663ad890c4b159d3a95a35fd80
-      size: 20465736
+      md5: ee0be7133a5bcfcf7cfbe10da122b975
+      size: 20465747
   train:
     cmd: python src/models/train.py data/processed/train.csv data/processed/test.csv
       models/model.clf
     deps:
     - path: data/processed/test.csv
-      md5: 3a0cfa4e35a13bab6051815ee8f58983
-      size: 6821730
+      md5: d5d058049adadf5625d00c8d970a854a
+      size: 6821741
     - path: data/processed/train.csv
-      md5: 8eb7a1663ad890c4b159d3a95a35fd80
-      size: 20465736
+      md5: ee0be7133a5bcfcf7cfbe10da122b975
+      size: 20465747
     - path: src/models/train.py
       md5: 9b24d327628a57edc6978e0e86516530
-      size: 1631
+      size: 1686
     outs:
     - path: models/model.clf
-      md5: 2478c092673d3bae73fbce181cb8c382
-      size: 15189930
+      md5: 7dcf661f668f5a6264f82c44587b6ac0
+      size: 15193908
   evaluate:
     cmd: python src/models/evaluate.py data/processed/test.csv models/model.clf reports/metrics.json
     deps:
     - path: models/model.clf
-      md5: 2478c092673d3bae73fbce181cb8c382
-      size: 15189930
+      md5: 7dcf661f668f5a6264f82c44587b6ac0
+      size: 15193908
     - path: src/models/evaluate.py
       md5: 1fde15198ea482654ca7899f246158b9
       size: 998
     outs:
     - path: reports/metrics.json
-      md5: f54f65481fad16460e4e40d1ba513ffc
+      md5: 6e672a7e88471492f6c76d87c8ceef17
       size: 88
