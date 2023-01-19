@@ -118,15 +118,15 @@ stages:
       md5: 2478c092673d3bae73fbce181cb8c382
       size: 15189930
   evaluate:
-    cmd: python src/models/evaluate.py data/processed/test.csv models/model.clf reports/scores.csv
+    cmd: python src/models/evaluate.py data/processed/test.csv models/model.clf reports/metrics.json
     deps:
     - path: models/model.clf
       md5: 2478c092673d3bae73fbce181cb8c382
       size: 15189930
     - path: src/models/evaluate.py
-      md5: 99449e447db18785500fb7d2e41b7c42
-      size: 982
+      md5: 1fde15198ea482654ca7899f246158b9
+      size: 998
     outs:
-    - path: reports/scores.csv
-      md5: d03c6c71030ffea8295f1170d7fd7a15
-      size: 47
+    - path: reports/metrics.json
+      md5: f54f65481fad16460e4e40d1ba513ffc
+      size: 88
