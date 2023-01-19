@@ -31,7 +31,7 @@ def train(input_paths: List[str], output_path: str):
         'boosting_type': 'gbdt',
         'objective': 'regression',
         'metric': {'l1'},
-        'max_depth': 11,
+        'max_depth': 6,
         'num_leaves': 180,
         'learning_rate': 0.25,
         'feature_fraction': 0.9,
