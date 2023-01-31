@@ -1,0 +1,12 @@
+# Ignore everything in this directory
+*
+# Except this file
+!.gitignore
+# Except this dirs
+!/data/
+!/features/
+!/models/
+!/reports/
+!/app/
+# Except init file
+!__init__.py

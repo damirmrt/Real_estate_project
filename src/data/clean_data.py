@@ -9,7 +9,7 @@ MIN_PRICE = 1_000_000  # Outlier range for price
 MAX_PRICE = 100_000_000
 
 MIN_KITCHEN = 3  # Outlier range for kitchen area
-MAX_KITCHEN = 70000
+MAX_KITCHEN = 200
 
 @click.command()
 @click.argument("input_path", type=click.Path())

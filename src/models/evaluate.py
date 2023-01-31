@@ -1,6 +1,7 @@
 import click
 import pandas as pd
 import joblib as jb
+import json
 from typing import List
 
 from sklearn.metrics import accuracy_score, precision_score, mean_absolute_error, mean_squared_error, make_scorer, confusion_matrix, recall_score, roc_auc_score
@@ -18,16 +19,14 @@ def evaluate(input_paths: List[str], output_path: str):
     y_holdout = test_df['price']
 
     y_predicted = model.predict(x_holdout, num_iteration=model.best_iteration)
-    score = pd.DataFrame(
-        dict(
+    score = dict(
             mae=mean_absolute_error(y_holdout, y_predicted),
             rmse=mean_squared_error(y_holdout, y_predicted)
         ),
-        index=[0],
-    )
 
-    score.to_csv(output_path, index=False)
 
+    with open(output_path, "w") as score_file:
+        json.dump(score, score_file, indent=4)
 
 
 if __name__ == "__main__":
