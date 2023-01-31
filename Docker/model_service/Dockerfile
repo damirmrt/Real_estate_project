@@ -4,7 +4,7 @@ WORKDIR /code
 
 RUN pip install --upgrade pip
 
-COPY ./Docker/model_service/requrements.txt /code/
+COPY ./Docker/model_service/requirements.txt /code/
 
 RUN pip install -r code/requirements.txt
 
