@@ -102,7 +102,7 @@ stages:
       size: 20465747
   train:
     cmd: python src/models/train.py data/processed/train.csv data/processed/test.csv
-      models/model.clf
+      models/model.clf reports/metrics.json
     deps:
     - path: data/processed/test.csv
       md5: d5d058049adadf5625d00c8d970a854a
@@ -111,12 +111,15 @@ stages:
       md5: ee0be7133a5bcfcf7cfbe10da122b975
       size: 20465747
     - path: src/models/train.py
-      md5: 9b24d327628a57edc6978e0e86516530
-      size: 1686
+      md5: cb4788a7c2517c2ed241cec93a92d403
+      size: 2648
     outs:
     - path: models/model.clf
-      md5: 7dcf661f668f5a6264f82c44587b6ac0
-      size: 15193908
+      md5: fcefa2a5afe1ece9f2ddc385770f953a
+      size: 11995820
+    - path: reports/metrics.json
+      md5: d7afbac5698d75bdad86837db0275ecf
+      size: 66
   evaluate:
     cmd: python src/models/evaluate.py data/processed/test.csv models/model.clf reports/metrics.json
     deps:
