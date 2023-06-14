@@ -3,7 +3,7 @@ import os
 import mlflow
 import uvicorn
 from dotenv import load_dotenv
-from fastapi import FastAPI, File, UploadFile, HTTPExceptio
+from fastapi import FastAPI, File, UploadFile, HTTPException
 
 # Load the environment variables from the .env file into the application
 load_dotenv()
